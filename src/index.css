@@ -44,8 +44,6 @@ body {
 }
 
 .header {
-   height: 75px;
-   width: 100%;
    display: flex;
    justify-content: center;
    align-items: center;
@@ -56,17 +54,9 @@ body {
    overflow-y: auto;
 }
 
-.test {
-   height: 1000px;
-   display: flex;
-   justify-content: center;
-   align-items: center;
-}
-
 .footer {
    position: fixed;
    bottom: 0;
-   height: 50px;
    width: 100%;
    display: flex;
    justify-content: center;
