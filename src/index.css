@@ -52,6 +52,10 @@ body {
 
 .main {
    overflow-y: auto;
+   padding: 10px;
+   display: flex;
+   flex-direction: column;
+   gap: 10px;
 }
 
 .footer {
@@ -71,3 +75,28 @@ body {
    justify-content: center;
    align-items: center;
 }
+
+/* TRACKER --- */
+
+.goal {
+   background: var(--medium);
+}
+
+.accordion {
+   display: flex;
+   justify-content: space-between;
+   align-items: center;
+}
+
+.goal form {
+   width: 100%;
+   display: flex;
+   gap: 5px;
+}
+
+.goal form input {
+   width: 25%;
+}
+
+/* GRAPH --- */
+
