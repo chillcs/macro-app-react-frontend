@@ -100,3 +100,87 @@ body {
 
 /* GRAPH --- */
 
+.section {
+	display: flex;
+	flex-direction: column;
+	justify-content: flex-end;
+	width: 100%;
+	height: 40%;
+}
+
+.macros {
+	display: flex;
+	justify-content: center;
+	width: 100%;
+	height: 100%;
+	margin-bottom: 5px;
+}
+
+.macro {
+	display: flex;
+	flex-direction: column;
+	justify-content: flex-end;
+	align-items: center;
+	text-align: center;
+	width: 100px;
+}
+
+.bar--goal {
+	position: relative;
+	display: flex;
+	align-items: flex-end;
+	width: 75px;
+	min-height: 5px;
+	margin-bottom: 10px;
+	background: var(--medium);
+}
+
+.bar {
+	position: absolute;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	width: 75px;
+	background: var(--alternate);
+}
+
+.title {
+	position: absolute;
+	width: 100%;
+	text-align: center;
+	font-size: var(--h3);
+	color: var(--light);
+	z-index: 10;
+}
+
+.amount {
+	display: flex;
+	font-size: var(--p);
+}
+
+.calories {
+	display: flex;
+	flex-direction: column;
+	align-items: flex-end;
+	margin-top: 10px;
+}
+
+.calories--goal {
+	position: relative;
+	display: flex;
+	align-items: center;
+	width: 100%;
+	height: 50px;
+	margin-bottom: 10px;
+	background: var(--medium);
+}
+
+.logged {
+	position: absolute;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	max-width: 100%;
+	height: 50px;
+	background: var(--alternate);
+}
