@@ -1,10 +1,28 @@
 import React from 'react';
+import { useState, useEffect } from 'react';
 
-const Graph = () => {
+const Graph = (props) => {
+	const [fatGoal, setFatGoal] = useState(0);
+	const [carbGoal, setCarbGoal] = useState(0);
+	const [proteinGoal, setProteinGoal] = useState(0);
+
 	// From local storage ---
-	const fatGoal = 100;
-	const carbGoal = 200;
-	const proteinGoal = 150;
+	useEffect(() => {
+		const fatGoal = parseInt(JSON.parse(localStorage.getItem('fatGoal')));
+		if (fatGoal) {
+			setFatGoal(fatGoal);
+		}
+		const carbGoal = parseInt(JSON.parse(localStorage.getItem('carbGoal')));
+		if (carbGoal) {
+			setCarbGoal(carbGoal);
+		}
+		const proteinGoal = parseInt(
+			JSON.parse(localStorage.getItem('proteinGoal'))
+		);
+		if (proteinGoal) {
+			setProteinGoal(proteinGoal);
+		}
+	}, [props.data]);
 	const totalGoal = fatGoal + carbGoal + proteinGoal;
 
 	// From server ---
@@ -30,48 +48,54 @@ const Graph = () => {
 
 	return (
 		<>
-			<div className="section">
+			<div className="graph">
 				<div className="macros">
 					<div className="macro">
-						<div className="bar--goal" style={{ height: fatGoalHeight }}>
-							<div className="title">FAT</div>
-							<div className="bar" style={{ height: fatLoggedHeight }}></div>
+						<div className="macro--goal" style={{ height: fatGoalHeight }}>
+							<div className="macro--title">FAT</div>
+							<div
+								className="macro--logged"
+								style={{ height: fatLoggedHeight }}
+							></div>
 						</div>
-						<div>
+						<div className="macro--amount">
 							{fatLogged} / {fatGoal} g
 						</div>
 					</div>
 					<div className="macro">
-						<div className="bar--goal" style={{ height: carbGoalHeight }}>
-							<div className="title">CARB</div>
-							<div className="bar" style={{ height: carbLoggedHeight }}></div>
+						<div className="macro--goal" style={{ height: carbGoalHeight }}>
+							<div className="macro--title">CARB</div>
+							<div
+								className="macro--logged"
+								style={{ height: carbLoggedHeight }}
+							></div>
 						</div>
-						<div>
+						<div className="macro--amount">
 							{carbLogged} / {carbGoal} g
 						</div>
 					</div>
 					<div className="macro">
-						<div className="bar--goal" style={{ height: proteinGoalHeight }}>
-							<div className="title">PROTEIN</div>
+						<div className="macro--goal" style={{ height: proteinGoalHeight }}>
+							<div className="macro--title">PROTEIN</div>
 							<div
-								className="bar"
+								className="macro--logged"
 								style={{ height: proteinLoggedHeight }}
 							></div>
 						</div>
-						<div>
+						<div className="macro--amount">
 							{proteinLogged} / {proteinGoal} g
 						</div>
 					</div>
 				</div>
 				<div className="calories">
 					<div className="calories--goal">
-						<div className="title">CALORIES</div>
+						<div className="calories--title">CALORIES</div>
 						<div
-							className="logged"
+							className="calories--logged"
 							style={{ width: caloriesLoggedWidth }}
 						></div>
 					</div>
-					<div className="amount">
+					<div className="calories--amount">
 						{caloriesLogged} / {caloriesGoal} cals
 					</div>
 				</div>

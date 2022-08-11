@@ -1,14 +1,17 @@
 import React from 'react';
+import { useState } from 'react';
 import Goal from '../Tracker/Goal';
 import Graph from '../Tracker/Graph';
-import Log from '../Tracker/Log';
 
 const Tracker = () => {
+	const [data, setData] = useState(true);
+	const updateData = () => {
+		setData(!data);
+	};
 	return (
 		<>
-			<Goal />
-			<Graph />
-			<Log />
+			<Goal updateData={updateData} />
+			<Graph data={data} />
 		</>
 	);
 };

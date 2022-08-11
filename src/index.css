@@ -13,14 +13,11 @@ font-family: 'Smooch Sans', sans-serif;
    --dark: #3F3D56;
    --accent: #860F1C;
    --hover: #bA0A0A;
-   --h1: 48px;
-   --h2: 32px;
-   --h3: 21px;
-   --p: 18px;
-   --xs: 15px;
-   --header: 65px;
-   --boxed: 1000px;
-   --mobile: 500px;
+   --h1: 32px;
+   --h2: 21px;
+   --h3: 18px;
+   --p: 15px;
+   --xs: 12px;
 }
 
 *, html {
@@ -48,6 +45,8 @@ body {
    justify-content: center;
    align-items: center;
    background: var(--dark);
+	font-size: var(--h1);
+	color: var(--light);
 }
 
 .main {
@@ -66,6 +65,8 @@ body {
    justify-content: center;
    align-items: center;
    background: var(--dark);
+	font-size: var(--h2);
+	color: var(--light);
 }
 
 .tab {
@@ -79,72 +80,90 @@ body {
 /* TRACKER --- */
 
 .goal {
-   background: var(--medium);
+	height: 50px;
+	width: 100%;
+	display: flex;
+	justify-content: space-between;
+	background: var(--medium);
+	font-size: var(--h3);
+	color: var(--dark);
 }
 
-.accordion {
-   display: flex;
-   justify-content: space-between;
+.switch {
+	height: 100%;
+	width: calc(100% - 50px);
+	padding: 10px;
+	display: flex;
    align-items: center;
+	
+}
+
+.button {
+	height: 100%;
+	width: 50px;
+   display: flex;
+   justify-content: center;
+   align-items: center;
+	background: var(--alternate);
 }
 
 .goal form {
-   width: 100%;
    display: flex;
    gap: 5px;
 }
 
 .goal form input {
-   width: 25%;
+   width: 20%;
+	padding: 5px;
 }
 
 /* GRAPH --- */
 
-.section {
+.graph {
+	height: 40%;
+	width: 100%;
 	display: flex;
 	flex-direction: column;
 	justify-content: flex-end;
-	width: 100%;
-	height: 40%;
 }
 
 .macros {
+	height: 100%;
+	width: 100%;
+	margin-bottom: 5px;
 	display: flex;
 	justify-content: center;
-	width: 100%;
-	height: 100%;
-	margin-bottom: 5px;
 }
 
 .macro {
+	width: 100px;
 	display: flex;
 	flex-direction: column;
 	justify-content: flex-end;
 	align-items: center;
 	text-align: center;
-	width: 100px;
 }
 
-.bar--goal {
+.macro--goal {
 	position: relative;
+	min-height: 5px;
+	width: 75px;
+	margin-bottom: 10px;
 	display: flex;
 	align-items: flex-end;
-	width: 75px;
-	min-height: 5px;
-	margin-bottom: 10px;
 	background: var(--medium);
 }
 
-.bar {
+.macro--logged {
 	position: absolute;
+	width: 75px;
 	display: flex;
 	justify-content: center;
 	align-items: center;
-	width: 75px;
 	background: var(--alternate);
 }
 
-.title {
+.macro--title {
 	position: absolute;
 	width: 100%;
 	text-align: center;
@@ -153,34 +172,52 @@ body {
 	z-index: 10;
 }
 
-.amount {
-	display: flex;
+.macro--amount {
 	font-size: var(--p);
+	color: var(--dark);
 }
 
 .calories {
+	margin-top: 10px;
 	display: flex;
 	flex-direction: column;
 	align-items: flex-end;
-	margin-top: 10px;
 }
 
 .calories--goal {
+	height: 50px;
+	width: 100%;
+	margin-bottom: 10px;
 	position: relative;
 	display: flex;
 	align-items: center;
-	width: 100%;
-	height: 50px;
-	margin-bottom: 10px;
 	background: var(--medium);
 }
 
-.logged {
+.calories--title {
 	position: absolute;
+	width: 100%;
 	display: flex;
 	justify-content: center;
 	align-items: center;
-	max-width: 100%;
+	font-size: var(--h3);
+	color: var(--light);
+	z-index: 10;
+}
+
+.calories--logged {
+	position: absolute;
 	height: 50px;
+	max-width: 100%;
+	display: flex;
+	justify-content: center;
+	align-items: center;
 	background: var(--alternate);
+}
+
+.calories--amount {
+	padding-right: 10px;
+	display: flex;
+	font-size: var(--p);
+	color: var(--dark);
 }
