@@ -1,7 +1,12 @@
 import React from 'react';
+import Food from '../Library/Food';
 
 const Library = () => {
-	return <div>Library</div>;
+	return (
+		<>
+			<Food />
+		</>
+	);
 };
 
 export default Library;

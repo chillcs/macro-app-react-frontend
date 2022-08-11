@@ -79,6 +79,8 @@ body {
 
 /* TRACKER --- */
 
+/* GOAL --- */
+
 .goal {
 	height: 50px;
 	width: 100%;
@@ -113,8 +115,11 @@ body {
 }
 
 .goal form input {
-   width: 20%;
+   width: 25%;
 	padding: 5px;
+	border: 1px solid var(--alternate);
+	font-size: var(--p);
+	color: var(--dark);
 }
 
 /* GRAPH --- */
@@ -220,4 +225,163 @@ body {
 	display: flex;
 	font-size: var(--p);
 	color: var(--dark);
+}
+
+/* LOG --- */
+
+.log {
+	height: 30%;
+	width: 100%;
+	display: flex;
+	flex-direction: column;
+}
+
+.log--title {
+	margin-bottom: 10px;
+	padding-left: 10px;
+	display: flex;
+	justify-content: flex-start;
+	font-size: var(--h3);
+	color: var(--dark);
+}
+
+log--column {
+	width: 100%;
+	display: flex;
+	flex-direction: column;
+	overflow-y: auto;
+}
+
+.log--row {
+	width: 100%;
+	padding: 5px 10px;
+	display: flex;
+	font-size: var(--p);
+	color: var(--dark);
+}
+
+.log--cell {
+	display: flex;
+	justify-content: flex-start;
+	text-align: left;
+}
+
+.log--button {
+	margin-left: 10px;
+	display: flex;
+	justify-content: center;
+}
+
+.log--button:hover {
+	cursor: pointer;
+}
+
+.log--empty {
+	margin-bottom: 10px;
+	display: flex;
+	justify-content: flex-start;
+	font-size: var(--h3);
+}
+
+/* LIBRARY --- */
+
+/* FOOD --- */
+
+.food {
+	width: 100%;
+	display: flex;
+	flex-direction: column;
+	background-color: var(--light);
+	overflow-y: auto;
+	z-index: 50;
+}
+
+.food--title {
+	width: 100%;
+	text-align: center;
+	font-size: var(--h2);
+}
+
+.food--table {
+	display: flex;
+	flex-direction: column;
+	width: 100%;
+	padding: 10px;
+	padding-bottom: 5px;
+	background: var(--light);
+	border-bottom: 1px solid var(--medium);
+}
+
+.food--wrapper {
+	display: flex;
+	flex-direction: column;
+	width: 100%;
+}
+
+.food--row {
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	width: 100%;
+	height: 40px;
+	border-top: 1px solid var(--medium);
+}
+
+.food--row:last-of-type {
+	border-bottom: 1px solid var(--medium);
+}
+
+.food--cell {
+	display: flex;
+	justify-content: flex-start;
+	text-align: left;
+	padding-left: 5px;
+	font-size: var(--xs);
+}
+
+.food--button-small {
+	display: flex;
+	justify-content: center;
+	min-width: 20px;
+	margin: 0 5px 0 15px;
+	font-size: var(--xs);
+}
+
+.food--button-small:hover {
+	cursor: pointer;
+}
+
+.food--button {
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	width: 100%;
+	height: 50px;
+	background: var(--light);
+	font-size: var(--h3);
+}
+
+.food--button:hover {
+	cursor: pointer;
+}
+
+.food--bottom {
+	display: flex;
+	justify-content: flex-end;
+	width: 100%;
+}
+
+.food form {
+	display: flex;
+	padding: 5px 5px 10px 5px;
+	background: var(--light);
+}
+
+.food form input {
+	width: 50%;
+	padding: 5px 5px;
+	font-size: var(--xs);
+	background: var(--light);
+	border: 1px solid var(--dark);
+	border-radius: 0px;
 }

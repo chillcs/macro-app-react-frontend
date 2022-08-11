@@ -18,7 +18,9 @@ const Goal = (props) => {
 		<>
 			<div className="goal">
 				<div className="switch">
-					{isOpen ? (
+					{!isOpen ? (
+						<div>SET MACROS</div>
+					) : (
 						<form>
 							<input
 								type="text"
@@ -41,10 +43,8 @@ const Goal = (props) => {
 									setProteinGoal(event.target.value);
 								}}
 							/>
-							<input type="submit" value="Submit" onClick={postMacros}></input>
+							<input type="submit" value="Submit" onClick={postMacros} />
 						</form>
-					) : (
-						<div>SET MACROS</div>
 					)}
 				</div>
 				<div
