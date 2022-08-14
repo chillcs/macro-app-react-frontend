@@ -1,24 +1,22 @@
 import React from 'react';
 import { useState, useEffect } from 'react';
-import FOOD_DATA from '../../../data/food.json';
 
 const Food = () => {
-	const [quantity, setQuantity] = useState(0);
-	const [unit, setUnit] = useState('');
-	const [name, setName] = useState('');
-	const [fat, setFat] = useState(0);
-	const [carb, setCarb] = useState(0);
-	const [protein, setProtein] = useState(0);
-	const [openList, setOpenList] = useState(false);
-	const [activeFood, setActiveFood] = useState(-1);
+	// Get Food Data ---
 	const [foodData, setFoodData] = useState([]);
-	const [logData, setLogData] = useState([]);
+	useEffect(() => {
+		fetch('http://localhost:3500/api/food')
+			.then((res) => res.json())
+			.then((data) => {
+				setFoodData(data);
+			});
+	}, []);
 	return (
 		<>
 			<div className="food">
 				<div className="food--title">FOOD LIBRARY</div>
 				<div className="food--table">
-					{FOOD_DATA.map((food, index) => {
+					{foodData.map((food, index) => {
 						return (
 							<div className="food--wrapper" key={index}>
 								<div className="food--row">
@@ -37,7 +35,7 @@ const Food = () => {
 									<div className="food--cell" style={{ width: '15%' }}>
 										P: {food.protein} g
 									</div>
-									{activeFood < 0 ? (
+									{/* {activeFood < 0 ? (
 										<div
 											className="food--button-small"
 											id={index}
@@ -88,14 +86,14 @@ const Food = () => {
 												>
 													＋
 												</div>
-										  )}
+										  )} */}
 								</div>
-								<div className="food--bottom">
+								{/* <div className="food--bottom">
 									{parseInt(activeFood) === index && (
 										<form>
 											<input
 												type="text"
-												placeholder="QUANTITY"
+												placeholder="Quantity"
 												onChange={(event) => {
 													setQuantity(event.target.value);
 												}}
@@ -103,12 +101,12 @@ const Food = () => {
 											<input
 												className="food--form-submit"
 												type="submit"
-												value="SUBMIT"
+												value="Add"
 												// onClick={createLog}
 											/>
 										</form>
 									)}
-								</div>
+								</div> */}
 							</div>
 						);
 					})}

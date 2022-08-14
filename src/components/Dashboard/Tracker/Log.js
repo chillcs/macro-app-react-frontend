@@ -1,14 +1,35 @@
 import React from 'react';
-import LOG_DATA from '../../../data/log.json';
+import { useState, useEffect } from 'react';
 
 const Log = () => {
+	// Get Log Data ---
+	const [logData, setLogData] = useState([]);
+	useEffect(() => {
+		fetch('http://localhost:3500/api/log')
+			.then((res) => res.json())
+			.then((data) => {
+				setLogData(data);
+			});
+	}, []);
+	// Delete Log ---
+	const deleteLog = (id) => {
+		fetch('http://localhost:3500/api/log/delete', {
+			method: 'DELETE',
+		}).then(() => {
+			setLogData(
+				logData.filter((log) => {
+					return log.id !== id;
+				})
+			);
+		});
+	};
 	return (
 		<>
 			<div className="log">
 				<div className="log--title">FOOD LOG</div>
-				{LOG_DATA.length > 0 ? (
+				{logData.length > 0 ? (
 					<div className="log--column">
-						{LOG_DATA.map((log, index) => {
+						{logData.map((log, index) => {
 							return (
 								<div
 									className="log--row"
@@ -40,7 +61,7 @@ const Log = () => {
 									<div
 										className="log--button"
 										onClick={() => {
-											// deleteLog(log.id);
+											deleteLog(log.id);
 										}}
 									>
 										☓
