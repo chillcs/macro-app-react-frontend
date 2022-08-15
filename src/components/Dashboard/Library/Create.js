@@ -12,14 +12,13 @@ const Goal = (props) => {
 	const [foodData, setFoodData] = useState([]);
 	const createFood = (event) => {
 		event.preventDefault();
-		fetch('http://localhost:3500/api/food/create', {
+		fetch('http://localhost:3500/create', {
 			method: 'POST',
 			headers: {
 				Accept: 'application/json',
 				'Content-Type': 'application/json;charset=UTF-8',
 			},
 			body: JSON.stringify({
-				id: 44,
 				name: name,
 				unit: unit,
 				fat: fat,
@@ -30,7 +29,6 @@ const Goal = (props) => {
 			setFoodData([
 				...foodData,
 				{
-					id: 44,
 					name: name,
 					unit: unit,
 					fat: fat,
@@ -40,7 +38,6 @@ const Goal = (props) => {
 			]);
 		});
 		setIsOpen(!isOpen);
-		console.log(foodData);
 	};
 
 	return (
