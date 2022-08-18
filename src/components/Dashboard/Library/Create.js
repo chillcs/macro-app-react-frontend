@@ -1,7 +1,7 @@
 import React from 'react';
 import { useState } from 'react';
 
-const Goal = (props) => {
+const Goal = () => {
 	const [isOpen, setIsOpen] = useState(false);
 	// Create Food ---
 	const [name, setName] = useState('No name');
