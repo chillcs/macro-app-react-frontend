@@ -12,7 +12,7 @@ const Goal = (props) => {
 	const [foodData, setFoodData] = useState([]);
 	const createFood = (event) => {
 		event.preventDefault();
-		fetch('http://localhost:3500/create', {
+		fetch('http://localhost:3500/food', {
 			method: 'POST',
 			headers: {
 				Accept: 'application/json',

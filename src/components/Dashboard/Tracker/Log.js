@@ -2,27 +2,27 @@ import React from 'react';
 import { useState, useEffect } from 'react';
 
 const Log = () => {
-	// Get Log Data ---
+	// Get log data ---
 	const [logData, setLogData] = useState([]);
 	useEffect(() => {
-		fetch('http://localhost:3500/api/log')
+		fetch('http://localhost:3500/log')
 			.then((res) => res.json())
 			.then((data) => {
 				setLogData(data);
 			});
 	}, []);
-	// Delete Log ---
-	const deleteLog = (id) => {
-		fetch('http://localhost:3500/api/log/delete', {
-			method: 'DELETE',
-		}).then(() => {
-			setLogData(
-				logData.filter((log) => {
-					return log.id !== id;
-				})
-			);
-		});
-	};
+	// // Delete Log ---
+	// const deleteLog = (id) => {
+	// 	fetch('http://localhost:3500/api/log/delete', {
+	// 		method: 'DELETE',
+	// 	}).then(() => {
+	// 		setLogData(
+	// 			logData.filter((log) => {
+	// 				return log.id !== id;
+	// 			})
+	// 		);
+	// 	});
+	// };
 	return (
 		<>
 			<div className="log">
@@ -58,14 +58,14 @@ const Log = () => {
 									<div className="log--cell" style={{ width: '15%' }}>
 										P: {log.protein} g
 									</div>
-									<div
+									{/* <div
 										className="log--button"
 										onClick={() => {
 											deleteLog(log.id);
 										}}
 									>
 										☓
-									</div>
+									</div> */}
 								</div>
 							);
 						})}

@@ -1,12 +1,12 @@
 import React from 'react';
-import Create from '../Library/Create';
 import Food from '../Library/Food';
+import Create from '../Library/Create';
 
 const Library = () => {
 	return (
 		<>
-			<Create />
 			<Food />
+			<Create />
 		</>
 	);
 };

@@ -2,15 +2,57 @@ import React from 'react';
 import { useState, useEffect } from 'react';
 
 const Food = () => {
-	// Get Food Data ---
+	// Get food data ---
 	const [foodData, setFoodData] = useState([]);
 	useEffect(() => {
-		fetch('http://localhost:3500/api/food')
+		fetch('http://localhost:3500/food')
 			.then((res) => res.json())
 			.then((data) => {
 				setFoodData(data);
 			});
 	}, []);
+	console.log(foodData);
+
+	// Create log ---
+	const [quantity, setQuantity] = useState(0);
+	const [unit, setUnit] = useState('');
+	const [name, setName] = useState('');
+	const [fat, setFat] = useState(0);
+	const [carb, setCarb] = useState(0);
+	const [protein, setProtein] = useState(0);
+	const [activeFood, setActiveFood] = useState(-1);
+	const [logData, setLogData] = useState([]);
+
+	const createLog = () => {
+		fetch('http://localhost:3500/log', {
+			method: 'POST',
+			headers: {
+				Accept: 'application/json',
+				'Content-Type': 'application/json;charset=UTF-8',
+			},
+			body: JSON.stringify({
+				quantity: quantity,
+				unit: unit,
+				name: name,
+				fat: fat,
+				carb: carb,
+				protein: protein,
+			}),
+		}).then(() => {
+			setLogData([
+				...logData,
+				{
+					quantity: quantity,
+					unit: unit,
+					name: name,
+					fat: fat,
+					carb: carb,
+					protein: protein,
+				},
+			]);
+		});
+		setActiveFood((activeFood) => (activeFood = -1));
+	};
 	return (
 		<>
 			<div className="food">
@@ -35,7 +77,7 @@ const Food = () => {
 									<div className="food--cell" style={{ width: '15%' }}>
 										P: {food.protein} g
 									</div>
-									{/* {activeFood < 0 ? (
+									{activeFood < 0 ? (
 										<div
 											className="food--button-small"
 											id={index}
@@ -86,9 +128,9 @@ const Food = () => {
 												>
 													＋
 												</div>
-										  )} */}
+										  )}
 								</div>
-								{/* <div className="food--bottom">
+								<div className="food--bottom">
 									{parseInt(activeFood) === index && (
 										<form>
 											<input
@@ -102,11 +144,11 @@ const Food = () => {
 												className="food--form-submit"
 												type="submit"
 												value="Add"
-												// onClick={createLog}
+												onClick={createLog}
 											/>
 										</form>
 									)}
-								</div> */}
+								</div>
 							</div>
 						);
 					})}
