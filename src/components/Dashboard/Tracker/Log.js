@@ -1,15 +1,15 @@
 import React from 'react';
 import { useState, useEffect } from 'react';
+import Axios from 'axios';
+import API_ROOT from '../../../api/root';
 
 const Log = () => {
 	// Get log data ---
 	const [logData, setLogData] = useState([]);
 	useEffect(() => {
-		fetch('http://localhost:3500/log')
-			.then((res) => res.json())
-			.then((data) => {
-				setLogData(data);
-			});
+		Axios.get(`${API_ROOT}/log`).then((res) => {
+			setLogData(res.data);
+		});
 	}, []);
 	// // Delete Log ---
 	// const deleteLog = (id) => {

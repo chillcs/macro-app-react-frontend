@@ -1,17 +1,16 @@
 import React from 'react';
 import { useState, useEffect } from 'react';
+import Axios from 'axios';
+import API_ROOT from '../../../api/root';
 
 const Food = () => {
 	// Get food data ---
 	const [foodData, setFoodData] = useState([]);
 	useEffect(() => {
-		fetch('http://localhost:3500/food')
-			.then((res) => res.json())
-			.then((data) => {
-				setFoodData(data);
-			});
+		Axios.get(`${API_ROOT}/food`).then((res) => {
+			setFoodData(res.data);
+		});
 	}, []);
-	console.log(foodData);
 
 	// Create log ---
 	const [quantity, setQuantity] = useState(0);
@@ -24,20 +23,13 @@ const Food = () => {
 	const [logData, setLogData] = useState([]);
 
 	const createLog = () => {
-		fetch('http://localhost:3500/log', {
-			method: 'POST',
-			headers: {
-				Accept: 'application/json',
-				'Content-Type': 'application/json;charset=UTF-8',
-			},
-			body: JSON.stringify({
-				quantity: quantity,
-				unit: unit,
-				name: name,
-				fat: fat,
-				carb: carb,
-				protein: protein,
-			}),
+		Axios.post(`${API_ROOT}/log`, {
+			quantity: quantity,
+			unit: unit,
+			name: name,
+			fat: fat,
+			carb: carb,
+			protein: protein,
 		}).then(() => {
 			setLogData([
 				...logData,
@@ -132,7 +124,7 @@ const Food = () => {
 								</div>
 								<div className="food--bottom">
 									{parseInt(activeFood) === index && (
-										<form>
+										<form onSubmit={createLog}>
 											<input
 												type="text"
 												placeholder="Quantity"
@@ -144,7 +136,6 @@ const Food = () => {
 												className="food--form-submit"
 												type="submit"
 												value="Add"
-												onClick={createLog}
 											/>
 										</form>
 									)}

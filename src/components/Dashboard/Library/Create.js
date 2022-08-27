@@ -1,5 +1,7 @@
 import React from 'react';
 import { useState } from 'react';
+import Axios from 'axios';
+import API_ROOT from '../../../api/root';
 
 const Goal = () => {
 	const [isOpen, setIsOpen] = useState(false);
@@ -10,21 +12,13 @@ const Goal = () => {
 	const [carb, setCarb] = useState(0);
 	const [protein, setProtein] = useState(0);
 	const [foodData, setFoodData] = useState([]);
-	const createFood = (event) => {
-		event.preventDefault();
-		fetch('http://localhost:3500/food', {
-			method: 'POST',
-			headers: {
-				Accept: 'application/json',
-				'Content-Type': 'application/json;charset=UTF-8',
-			},
-			body: JSON.stringify({
-				name: name,
-				unit: unit,
-				fat: fat,
-				carb: carb,
-				protein: protein,
-			}),
+	const createFood = () => {
+		Axios.post(`${API_ROOT}/food`, {
+			name: name,
+			unit: unit,
+			fat: fat,
+			carb: carb,
+			protein: protein,
 		}).then(() => {
 			setFoodData([
 				...foodData,
