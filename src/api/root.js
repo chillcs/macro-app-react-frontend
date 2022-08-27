@@ -1,3 +1,3 @@
-const API_ROOT = 'http://localhost:3500';
+const API_ROOT = 'https://macro-api-cstudio.herokuapp.com';
 
 export default API_ROOT;
