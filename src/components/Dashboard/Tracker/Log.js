@@ -11,18 +11,17 @@ const Log = () => {
 			setLogData(res.data);
 		});
 	}, []);
-	// // Delete Log ---
-	// const deleteLog = (id) => {
-	// 	fetch('http://localhost:3500/api/log/delete', {
-	// 		method: 'DELETE',
-	// 	}).then(() => {
-	// 		setLogData(
-	// 			logData.filter((log) => {
-	// 				return log.id !== id;
-	// 			})
-	// 		);
-	// 	});
-	// };
+
+	// Delete food ---
+	const deleteLog = (id) => {
+		Axios.delete(`${API_ROOT}/log/${id}`).then(() => {
+			setLogData(
+				logData.filter((log) => {
+					return log.id !== id;
+				})
+			);
+		});
+	};
 	return (
 		<>
 			<div className="log">
@@ -58,14 +57,14 @@ const Log = () => {
 									<div className="log--cell" style={{ width: '15%' }}>
 										P: {log.protein} g
 									</div>
-									{/* <div
+									<div
 										className="log--button"
 										onClick={() => {
-											deleteLog(log.id);
+											deleteLog(log._id);
 										}}
 									>
 										☓
-									</div> */}
+									</div>
 								</div>
 							);
 						})}

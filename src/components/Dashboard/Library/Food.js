@@ -45,6 +45,17 @@ const Food = () => {
 		});
 		setActiveFood((activeFood) => (activeFood = -1));
 	};
+
+	// Delete food ---
+	const deleteFood = (id) => {
+		Axios.delete(`${API_ROOT}/food/${id}`).then(() => {
+			setFoodData(
+				foodData.filter((food) => {
+					return food.id !== id;
+				})
+			);
+		});
+	};
 	return (
 		<>
 			<div className="food">
@@ -68,6 +79,15 @@ const Food = () => {
 									</div>
 									<div className="food--cell" style={{ width: '15%' }}>
 										P: {food.protein} g
+									</div>
+									<div
+										className="food--button-small"
+										id={index}
+										onClick={() => {
+											deleteFood(food._id);
+										}}
+									>
+										☓
 									</div>
 									{activeFood < 0 ? (
 										<div
