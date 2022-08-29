@@ -1,13 +1,17 @@
 import React from 'react';
 import { useState, useEffect } from 'react';
 import Axios from 'axios';
-import API_ROOT from '../../../api/root';
+import {
+	API_GET_FOOD,
+	API_DELETE_FOOD,
+	API_CREATE_LOG,
+} from '../../../api/routes';
 
 const Food = () => {
 	// Get food data ---
 	const [foodData, setFoodData] = useState([]);
 	useEffect(() => {
-		Axios.get(`${API_ROOT}/food`).then((res) => {
+		Axios.get(`${API_GET_FOOD}`).then((res) => {
 			setFoodData(res.data);
 		});
 	}, []);
@@ -23,7 +27,7 @@ const Food = () => {
 	const [logData, setLogData] = useState([]);
 
 	const createLog = () => {
-		Axios.post(`${API_ROOT}/log/create`, {
+		Axios.post(`${API_CREATE_LOG}`, {
 			quantity: quantity,
 			unit: unit,
 			name: name,
@@ -48,7 +52,7 @@ const Food = () => {
 
 	// Delete food ---
 	const deleteFood = (id) => {
-		Axios.delete(`${API_ROOT}/food/${id}`).then(() => {
+		Axios.delete(`${API_DELETE_FOOD}/${id}`).then(() => {
 			setFoodData(
 				foodData.filter((food) => {
 					return food.id !== id;

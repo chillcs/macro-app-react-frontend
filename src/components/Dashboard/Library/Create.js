@@ -1,7 +1,7 @@
 import React from 'react';
 import { useState } from 'react';
 import Axios from 'axios';
-import API_ROOT from '../../../api/root';
+import { API_CREATE_FOOD } from '../../../api/routes';
 
 const Goal = () => {
 	const [isOpen, setIsOpen] = useState(false);
@@ -13,7 +13,7 @@ const Goal = () => {
 	const [protein, setProtein] = useState(0);
 	const [foodData, setFoodData] = useState([]);
 	const createFood = () => {
-		Axios.post(`${API_ROOT}/food/create`, {
+		Axios.post(`${API_CREATE_FOOD}`, {
 			name: name,
 			unit: unit,
 			fat: fat,

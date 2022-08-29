@@ -1,20 +1,20 @@
 import React from 'react';
 import { useState, useEffect } from 'react';
 import Axios from 'axios';
-import API_ROOT from '../../../api/root';
+import { API_GET_LOG, API_DELETE_LOG } from '../../../api/routes';
 
 const Log = () => {
 	// Get log data ---
 	const [logData, setLogData] = useState([]);
 	useEffect(() => {
-		Axios.get(`${API_ROOT}/log`).then((res) => {
+		Axios.get(`${API_GET_LOG}`).then((res) => {
 			setLogData(res.data);
 		});
 	}, []);
 
 	// Delete food ---
 	const deleteLog = (id) => {
-		Axios.delete(`${API_ROOT}/log/${id}`).then(() => {
+		Axios.delete(`${API_DELETE_LOG}/${id}`).then(() => {
 			setLogData(
 				logData.filter((log) => {
 					return log.id !== id;
