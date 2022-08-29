@@ -1,5 +1,5 @@
 // ROOT ---
-const API_ROOT = 'http://localhost:3500';
+const API_ROOT = 'https://macro-api-cstudio.herokuapp.com';
 
 // FOOD
 const API_GET_FOOD = `${API_ROOT}/food`;
