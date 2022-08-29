@@ -13,7 +13,7 @@ const Goal = () => {
 	const [protein, setProtein] = useState(0);
 	const [foodData, setFoodData] = useState([]);
 	const createFood = () => {
-		Axios.post(`${API_ROOT}/food`, {
+		Axios.post(`${API_ROOT}/food/create`, {
 			name: name,
 			unit: unit,
 			fat: fat,

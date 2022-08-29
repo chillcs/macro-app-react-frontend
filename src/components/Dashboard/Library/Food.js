@@ -23,7 +23,7 @@ const Food = () => {
 	const [logData, setLogData] = useState([]);
 
 	const createLog = () => {
-		Axios.post(`${API_ROOT}/log`, {
+		Axios.post(`${API_ROOT}/log/create`, {
 			quantity: quantity,
 			unit: unit,
 			name: name,
