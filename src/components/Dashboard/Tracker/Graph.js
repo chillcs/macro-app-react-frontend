@@ -1,12 +1,13 @@
 import React from 'react';
 import { useState, useEffect } from 'react';
+import Axios from 'axios';
+import { API_GET_LOG } from '../../../api/routes';
 
 const Graph = (props) => {
+	// Get macro goal data from local storage ---
 	const [fatGoal, setFatGoal] = useState(0);
 	const [carbGoal, setCarbGoal] = useState(0);
 	const [proteinGoal, setProteinGoal] = useState(0);
-
-	// From local storage ---
 	useEffect(() => {
 		const fatGoal = parseInt(JSON.parse(localStorage.getItem('fatGoal')));
 		if (fatGoal) {
@@ -25,11 +26,47 @@ const Graph = (props) => {
 	}, [props.data]);
 	const totalGoal = fatGoal + carbGoal + proteinGoal;
 
-	// From server ---
-	const fatLogged = 50;
-	const carbLogged = 75;
-	const proteinLogged = 90;
-	const totalLogged = fatLogged + carbLogged + proteinLogged;
+	// Get log data from server ---
+	const [logData, setLogData] = useState([]);
+	useEffect(() => {
+		Axios.get(`${API_GET_LOG}`).then((res) => {
+			setLogData(res.data);
+		});
+	}, []);
+
+	// Calculate macro totals from log data ---
+	const [fatLogged, setFatLogged] = useState(0);
+	const [carbLogged, setCarbLogged] = useState(0);
+	const [proteinLogged, setProteinLogged] = useState(0);
+	useEffect(() => {
+		setFatLogged(
+			parseInt(
+				[...logData.map((log) => log.quantity * log.fat)]
+					.reduce(function (a, b) {
+						return a + b;
+					}, 0)
+					.toFixed(0)
+			)
+		);
+		setCarbLogged(
+			parseInt(
+				[...logData.map((log) => log.quantity * log.carb)]
+					.reduce(function (a, b) {
+						return a + b;
+					}, 0)
+					.toFixed(0)
+			)
+		);
+		setProteinLogged(
+			parseInt(
+				[...logData.map((log) => log.quantity * log.protein)]
+					.reduce(function (a, b) {
+						return a + b;
+					}, 0)
+					.toFixed(0)
+			)
+		);
+	}, [logData]);
 
 	// Graph goal heights ---
 	const fatGoalHeight = (fatGoal / totalGoal) * 100 + '%';
@@ -37,14 +74,20 @@ const Graph = (props) => {
 	const proteinGoalHeight = (proteinGoal / totalGoal) * 100 + '%';
 
 	// Graph logged heights ---
-	const fatLoggedHeight = (fatLogged / totalLogged) * 100 + '%';
-	const carbLoggedHeight = (carbLogged / totalLogged) * 100 + '%';
-	const proteinLoggedHeight = (proteinLogged / totalLogged) * 100 + '%';
+	const fatLoggedHeight = (fatLogged / fatGoal) * 100 + '%';
+	const carbLoggedHeight = (carbLogged / carbGoal) * 100 + '%';
+	const proteinLoggedHeight = (proteinLogged / proteinGoal) * 100 + '%';
 
 	// Calories calcs and logged width ---
 	const caloriesGoal = fatGoal * 9 + carbGoal * 4 + proteinGoal * 4;
 	const caloriesLogged = fatLogged * 9 + carbLogged * 4 + proteinLogged * 4;
 	const caloriesLoggedWidth = (caloriesLogged / caloriesGoal) * 100 + '%';
+
+	// Goals reached?
+	let carbGoalReached = false;
+	if (carbLogged > carbGoal) {
+		carbGoalReached = true;
+	}
 
 	return (
 		<>
@@ -63,6 +106,7 @@ const Graph = (props) => {
 						</div>
 					</div>
 					<div className="macro">
+						{carbGoalReached ? <div>✔</div> : <div></div>}
 						<div className="macro--goal" style={{ height: carbGoalHeight }}>
 							<div className="macro--title">CARB</div>
 							<div

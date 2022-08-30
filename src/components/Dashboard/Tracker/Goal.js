@@ -43,12 +43,17 @@ const Goal = (props) => {
 									setProteinGoal(event.target.value);
 								}}
 							/>
-							<input type="submit" value="Submit" onClick={postMacros} />
+							<input
+								className="btn"
+								type="submit"
+								value="Submit"
+								onClick={postMacros}
+							/>
 						</form>
 					)}
 				</div>
 				<div
-					className="button"
+					className="btn button"
 					onClick={() => {
 						setIsOpen(!isOpen);
 					}}

@@ -77,12 +77,17 @@ const Goal = () => {
 									setProtein(event.target.value);
 								}}
 							/>
-							<input type="submit" value="Create" onClick={createFood} />
+							<input
+								className="btn"
+								type="submit"
+								value="Create"
+								onClick={createFood}
+							/>
 						</form>
 					)}
 				</div>
 				<div
-					className="button"
+					className="btn button"
 					onClick={() => {
 						setIsOpen(!isOpen);
 					}}

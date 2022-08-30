@@ -39,13 +39,13 @@ const Log = () => {
 											: { background: 'var(--light)' }
 									}
 								>
-									<div className="log--cell" style={{ width: '5%' }}>
+									<div className="log--cell" style={{ width: '10%' }}>
 										{log.quantity}
 									</div>
 									<div className="log--cell" style={{ width: '15%' }}>
 										{log.unit}
 									</div>
-									<div className="log--cell" style={{ width: '35%' }}>
+									<div className="log--cell" style={{ width: '30%' }}>
 										{log.name}
 									</div>
 									<div className="log--cell" style={{ width: '15%' }}>

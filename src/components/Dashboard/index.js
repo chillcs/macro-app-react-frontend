@@ -46,13 +46,13 @@ const Dashboard = () => {
 					{parseInt(active) === 2 && <Settings />}
 				</div>
 				<div className="footer" style={footerHeight}>
-					<div className="tab" id={0} onClick={openTab}>
+					<div className="btn tab" id={0} onClick={openTab}>
 						Tracker
 					</div>
-					<div className="tab" id={1} onClick={openTab}>
+					<div className="btn tab" id={1} onClick={openTab}>
 						Library
 					</div>
-					<div className="tab" id={2} onClick={openTab}>
+					<div className="btn tab" id={2} onClick={openTab}>
 						Settings
 					</div>
 				</div>
