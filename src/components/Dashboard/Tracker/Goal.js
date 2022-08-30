@@ -6,7 +6,8 @@ const Goal = (props) => {
 	const [fatGoal, setFatGoal] = useState(0);
 	const [carbGoal, setCarbGoal] = useState(0);
 	const [proteinGoal, setProteinGoal] = useState(0);
-	const postMacros = () => {
+	const postMacros = (event) => {
+		event.preventDefault();
 		localStorage.setItem('fatGoal', JSON.stringify(fatGoal));
 		localStorage.setItem('carbGoal', JSON.stringify(carbGoal));
 		localStorage.setItem('proteinGoal', JSON.stringify(proteinGoal));

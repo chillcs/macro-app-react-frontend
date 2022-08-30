@@ -26,7 +26,8 @@ const Food = () => {
 	const [activeFood, setActiveFood] = useState(-1);
 	const [logData, setLogData] = useState([]);
 
-	const createLog = () => {
+	const createLog = (event) => {
+		event.preventDefault();
 		Axios.post(`${API_CREATE_LOG}`, {
 			quantity: quantity,
 			unit: unit,
@@ -62,8 +63,8 @@ const Food = () => {
 	};
 	return (
 		<>
+			<div className="food--title">FOOD LIBRARY</div>
 			<div className="food">
-				<div className="food--title">FOOD LIBRARY</div>
 				<div className="food--table">
 					{foodData.map((food, index) => {
 						return (
@@ -83,15 +84,6 @@ const Food = () => {
 									</div>
 									<div className="food--cell" style={{ width: '15%' }}>
 										P: {food.protein} g
-									</div>
-									<div
-										className="food--button-small"
-										id={index}
-										onClick={() => {
-											deleteFood(food._id);
-										}}
-									>
-										☓
 									</div>
 									{activeFood < 0 ? (
 										<div
@@ -161,6 +153,15 @@ const Food = () => {
 												type="submit"
 												value="Add"
 											/>
+											<div
+												className="food--button-small"
+												id={index}
+												onClick={() => {
+													deleteFood(food._id);
+												}}
+											>
+												☓
+											</div>
 										</form>
 									)}
 								</div>

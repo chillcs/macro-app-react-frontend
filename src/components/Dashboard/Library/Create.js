@@ -3,7 +3,7 @@ import { useState } from 'react';
 import Axios from 'axios';
 import { API_CREATE_FOOD } from '../../../api/routes';
 
-const Goal = () => {
+const Create = () => {
 	const [isOpen, setIsOpen] = useState(false);
 	// Create Food ---
 	const [name, setName] = useState('No name');
@@ -12,7 +12,8 @@ const Goal = () => {
 	const [carb, setCarb] = useState(0);
 	const [protein, setProtein] = useState(0);
 	const [foodData, setFoodData] = useState([]);
-	const createFood = () => {
+	const createFood = (event) => {
+		event.preventDefault();
 		Axios.post(`${API_CREATE_FOOD}`, {
 			name: name,
 			unit: unit,
@@ -36,67 +37,66 @@ const Goal = () => {
 
 	return (
 		<>
-			<div className="goal">
-				<div className="switch">
-					{!isOpen ? (
-						<div>CREATE FOOD</div>
-					) : (
-						<form>
-							<input
-								type="text"
-								placeholder="Name"
-								onChange={(event) => {
-									setName(event.target.value);
-								}}
-							/>
-							<input
-								type="text"
-								placeholder="Unit"
-								onChange={(event) => {
-									setUnit(event.target.value);
-								}}
-							/>
-							<input
-								type="text"
-								placeholder="Fat"
-								onChange={(event) => {
-									setFat(event.target.value);
-								}}
-							/>
-							<input
-								type="text"
-								placeholder="Carb"
-								onChange={(event) => {
-									setCarb(event.target.value);
-								}}
-							/>
-							<input
-								type="text"
-								placeholder="Protein"
-								onChange={(event) => {
-									setProtein(event.target.value);
-								}}
-							/>
-							<input
-								className="btn"
-								type="submit"
-								value="Create"
-								onClick={createFood}
-							/>
-						</form>
-					)}
-				</div>
+			<div className="create">
+				<div>CREATE FOOD</div>
 				<div
 					className="btn button"
 					onClick={() => {
 						setIsOpen(!isOpen);
 					}}
 				>
-					<div>{isOpen ? '－' : '＋'}</div>
+					{isOpen ? '－' : '＋'}
 				</div>
 			</div>
+			{isOpen ? (
+				<div className="create--bottom">
+					<form>
+						<input
+							type="text"
+							placeholder="Name"
+							onChange={(event) => {
+								setName(event.target.value);
+							}}
+						/>
+						<input
+							type="text"
+							placeholder="Unit"
+							onChange={(event) => {
+								setUnit(event.target.value);
+							}}
+						/>
+						<input
+							type="text"
+							placeholder="Fat"
+							onChange={(event) => {
+								setFat(event.target.value);
+							}}
+						/>
+						<input
+							type="text"
+							placeholder="Carb"
+							onChange={(event) => {
+								setCarb(event.target.value);
+							}}
+						/>
+						<input
+							type="text"
+							placeholder="Protein"
+							onChange={(event) => {
+								setProtein(event.target.value);
+							}}
+						/>
+						<input
+							className="btn"
+							type="submit"
+							value="Create"
+							onClick={createFood}
+						/>
+					</form>
+				</div>
+			) : null}
 		</>
 	);
 };
 
-export default Goal;
+export default Create;

@@ -69,9 +69,14 @@ const Graph = (props) => {
 	}, [logData]);
 
 	// Graph goal heights ---
-	const fatGoalHeight = (fatGoal / totalGoal) * 100 + '%';
-	const carbGoalHeight = (carbGoal / totalGoal) * 100 + '%';
-	const proteinGoalHeight = (proteinGoal / totalGoal) * 100 + '%';
+	let fatGoalHeight = (fatGoal / totalGoal) * 200 + '%';
+	let carbGoalHeight = (carbGoal / totalGoal) * 200 + '%';
+	let proteinGoalHeight = (proteinGoal / totalGoal) * 200 + '%';
+	if (fatGoal || carbGoal || proteinGoal > 0.5 * totalGoal) {
+		fatGoalHeight = (fatGoal / totalGoal) * 200 + '%';
+		carbGoalHeight = (carbGoal / totalGoal) * 200 + '%';
+		proteinGoalHeight = (proteinGoal / totalGoal) * 200 + '%';
+	}
 
 	// Graph logged heights ---
 	const fatLoggedHeight = (fatLogged / fatGoal) * 100 + '%';
@@ -83,17 +88,17 @@ const Graph = (props) => {
 	const caloriesLogged = fatLogged * 9 + carbLogged * 4 + proteinLogged * 4;
 	const caloriesLoggedWidth = (caloriesLogged / caloriesGoal) * 100 + '%';
 
-	// Goals reached?
-	let carbGoalReached = false;
-	if (carbLogged > carbGoal) {
-		carbGoalReached = true;
-	}
+	// Check criteria ---
+	const minMacro = 25;
 
 	return (
 		<>
 			<div className="graph">
 				<div className="macros">
 					<div className="macro">
+						{fatLogged > fatGoal && fatGoal > minMacro ? (
+							<div className="check">✔</div>
+						) : null}
 						<div className="macro--goal" style={{ height: fatGoalHeight }}>
 							<div className="macro--title">FAT</div>
 							<div
@@ -106,7 +111,9 @@ const Graph = (props) => {
 						</div>
 					</div>
 					<div className="macro">
-						{carbGoalReached ? <div>✔</div> : <div></div>}
+						{carbLogged > carbGoal && carbGoal > minMacro ? (
+							<div className="check">✔</div>
+						) : null}
 						<div className="macro--goal" style={{ height: carbGoalHeight }}>
 							<div className="macro--title">CARB</div>
 							<div
@@ -119,6 +126,9 @@ const Graph = (props) => {
 						</div>
 					</div>
 					<div className="macro">
+						{proteinLogged > proteinGoal && proteinGoal > minMacro ? (
+							<div className="check">✔</div>
+						) : null}
 						<div className="macro--goal" style={{ height: proteinGoalHeight }}>
 							<div className="macro--title">PROTEIN</div>
 							<div
