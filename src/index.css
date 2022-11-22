@@ -1,31 +1,25 @@
-/* Imports --- */
-@import url('https://fonts.googleapis.com/css2?family=Smooch+Sans:wght@100;200;300;400;500;600;700&display=swap');
-
-/* Font Families ---
-font-family: 'Smooch Sans', sans-serif;
-*/
+/* GLOBAL SETTINGS & STYLES --- */
 
 :root {
    --light: #f2f2f8;
-   --light2: #e5e5ec;
    --medium: #e2e0ed;
    --alternate: #c8c4dc;
    --dark: #3F3D56;
    --accent: #860F1C;
    --hover: #bA0A0A;
-   --h1: 35px;
-   --h2: 24px;
-   --h3: 21px;
-   --p: 18px;
-   --xs: 15px;
+   --h1: 32px;
+   --h2: 21px;
+   --h3: 18px;
+   --p: 15px;
+   --xs: 12px;
 }
 
 *, html {
    box-sizing: border-box;
    margin: 0;
    padding: 0;
-   font-family: 'Smooch Sans', sans-serif;
-   font-weight: 400;
+   font-family: 'Helvetica';
+   font-weight: 300;
    letter-spacing: 0.5px;
 }
 
@@ -33,26 +27,44 @@ body {
    margin: auto;
 }
 
-/* GLOBAL STYLES --- */
-
 .btn:hover {
 	cursor: pointer;
 }
 
-/* DASHBOARD --- */
+/* APP --- */
 
-.dashboard {
+.app {
    position: relative;
    background: var(--light);
 }
 
 .header {
+   position: relative;
    display: flex;
    justify-content: center;
    align-items: center;
    background: var(--dark);
-	font-size: var(--h1);
+}
+
+.logo {
+   font-size: var(--h1);
 	color: var(--light);
+}
+
+.profile {
+   position: absolute;
+   top: 50%;
+   right: 35px;
+   transform: translate(50%, -50%);
+   height: 50px;
+   width: 50px;
+   display: flex;
+   justify-content: center;
+   align-items: center;
+   background: var(--light);
+   font-size: var(--h1);
+	color: var(--dark);
+   border-radius: 50%;
 }
 
 .main {
@@ -68,368 +80,18 @@ body {
    bottom: 0;
    width: 100%;
    display: flex;
-   justify-content: center;
+   justify-content: space-evenly;
    align-items: center;
    background: var(--dark);
-	font-size: var(--h2);
-	color: var(--light);
 }
 
 .tab {
-   height: 100%;
-   width: calc(100% * 1 / 3);
+   height: 60%;
+   width: 45%;
    display: flex;
    justify-content: center;
    align-items: center;
-}
-
-/* TRACKER --- */
-
-/* GOAL --- */
-
-.goal {
-	min-height: 50px;
-	width: 100%;
-	margin-bottom: 25px;
-	display: flex;
-	justify-content: space-between;
-	background: var(--medium);
-	font-size: var(--h3);
-	color: var(--dark);
-}
-
-.switch {
-	height: 100%;
-	width: calc(100% - 50px);
-	padding: 10px;
-	display: flex;
-   align-items: center;
-	
-}
-
-.button {
-	height: 100%;
-	width: 50px;
-   display: flex;
-   justify-content: center;
-   align-items: center;
-	background: var(--alternate);
-}
-
-.goal form {
-   display: flex;
-   gap: 5px;
-}
-
-.goal form input {
-   width: 25%;
-	padding: 5px;
-	border: 1px solid var(--alternate);
-	font-size: var(--p);
-	color: var(--dark);
-}
-
-/* GRAPH --- */
-
-.graph {
-	height: 50%;
-	width: 100%;
-	display: flex;
-	flex-direction: column;
-	justify-content: flex-end;
-}
-
-.macros {
-	height: 100%;
-	width: 100%;
-	margin-bottom: 5px;
-	display: flex;
-	justify-content: center;
-}
-
-.macro {
-	width: 100px;
-	display: flex;
-	flex-direction: column;
-	justify-content: flex-end;
-	align-items: center;
-	text-align: center;
-}
-
-.check {
-	font-size: var(--h3);
-	color: var(--dark);
-}
-
-.macro--goal {
-	position: relative;
-	min-height: 5px;
-	width: 75px;
-	margin-bottom: 10px;
-	display: flex;
-	align-items: flex-end;
-	background: var(--medium);
-}
-
-.macro--logged {
-	position: absolute;
-	max-height: 100%;
-	width: 75px;
-	display: flex;
-	justify-content: center;
-	align-items: center;
-	background: var(--alternate);
-}
-
-.macro--title {
-	position: absolute;
-	width: 100%;
-	text-align: center;
-	font-size: var(--h3);
-	color: var(--light);
-	z-index: 10;
-}
-
-.macro--amount {
-	font-size: var(--p);
-	color: var(--dark);
-}
-
-.calories {
-	margin-top: 10px;
-	display: flex;
-	flex-direction: column;
-	align-items: flex-end;
-}
-
-.calories--goal {
-	height: 35px;
-	width: 100%;
-	margin-bottom: 10px;
-	position: relative;
-	display: flex;
-	align-items: center;
-	background: var(--medium);
-}
-
-.calories--logged {
-	position: absolute;
-	height: 35px;
-	max-width: 100%;
-	display: flex;
-	justify-content: center;
-	align-items: center;
-	background: var(--alternate);
-}
-
-.calories--title {
-	position: absolute;
-	width: 100%;
-	display: flex;
-	justify-content: center;
-	align-items: center;
-	font-size: var(--h3);
-	color: var(--light);
-	z-index: 10;
-}
-
-.calories--amount {
-	padding-right: 10px;
-	display: flex;
-	font-size: var(--p);
-	color: var(--dark);
-}
-
-/* LOG --- */
-
-.log--title {
-	margin-bottom: 5px;
-	padding-left: 10px;
-	display: flex;
-	justify-content: flex-start;
-	font-size: var(--h3);
-	color: var(--dark);
-}
-
-.log--wrapper {
-	overflow-y: auto;
-	margin: 0 -10px;
-}
-
-.log {
-	height: 40%;
-	width: 100%;
-	padding: 0 10px;
-	display: flex;
-	flex-direction: column;
-}
-
-log--column {
-	width: 100%;
-	display: flex;
-	flex-direction: column;
-}
-
-.log--row {
-	min-height: 45px;
-	width: 100%;
-	padding: 5px 10px;
-	display: flex;
-	align-items: center;
-	font-size: var(--p);
-	color: var(--dark);
-}
-
-.log--cell {
-	display: flex;
-	justify-content: flex-start;
-	text-align: left;
-}
-
-.log--button {
-	margin: 0 5px;
-	display: flex;
-	justify-content: center;
-}
-
-.log--button:hover {
-	cursor: pointer;
-}
-
-.log--empty {
-	margin-bottom: 10px;
-	display: flex;
-	justify-content: flex-start;
-	font-size: var(--h3);
-}
-
-/* LIBRARY --- */
-
-/* FOOD --- */
-
-.food--title {
-	height: 50px;
-	width: 100%;
-	margin-top: 5px;
-	display: flex;
-	justify-content: center;
-	align-items: center;
-	font-size: var(--h2);
-	color: var(--dark);
-}
-
-.food {
-	overflow-y: auto;
-	margin: 0 -10px;
-}
-
-.food--table {
-	display: flex;
-	flex-direction: column;
-	width: 100%;
-	padding: 5px 10px;
-	border-bottom: 1px solid var(--medium);
-	font-size: var(--p);
-	color: var(--dark);
-}
-
-.food--wrapper {
-	display: flex;
-	flex-direction: column;
-	width: 100%;
-}
-
-.food--row {
-	display: flex;
-	justify-content: center;
-	align-items: center;
-	width: 100%;
-	height: 50px;
-	border-top: 1px solid var(--medium);
-}
-
-.food--cell {
-	display: flex;
-	justify-content: flex-start;
-	text-align: left;
-	padding-left: 5px;
-	
-}
-
-.food--button-small {
-	display: flex;
-	justify-content: center;
-	align-items: center;
-	min-width: 20px;
-	margin: 0 5px;
-	margin-right: 10px;
-}
-
-.food--button-small:hover {
-	cursor: pointer;
-}
-
-.food--bottom {
-	display: flex;
-	justify-content: flex-end;
-	width: 100%;
-}
-
-.food form {
-	display: flex;
-	justify-content: flex-end;
-   gap: 5px;
-	margin-bottom: 10px;
-}
-
-.food form input {
-   width: 50%;
-	padding: 5px;
-	border: 1px solid var(--alternate);
-	font-size: var(--p);
-	color: var(--dark);
-}
-
-/* FOOD --- */
-
-.create {
-	min-height: 50px;
-	width: 100%;
-	padding-left: 10px;
-	display: flex;
-	justify-content: space-between;
-	align-items: center;
-	background: var(--medium);
-	font-size: var(--h3);
-	color: var(--dark);
-}
-
-.button {
-	height: 100%;
-	width: 50px;
-   display: flex;
-   justify-content: center;
-   align-items: center;
-	background: var(--alternate);
-}
-
-.create--bottom {
-	display: flex;
-	width: 100%;
-}
-
-.create--bottom form {
-	width: 100%;
-	margin: 0 10px;
-   display: flex;
-	flex-direction: column;
-   gap: 5px;
-}
-
-.create--bottom form input {
-   width: 100%;
-	padding: 5px;
-	border: 1px solid var(--alternate);
-	font-size: var(--p);
+   background: var(--light);
+   font-size: var(--h2);
 	color: var(--dark);
 }
